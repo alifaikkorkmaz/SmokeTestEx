@@ -165,9 +165,15 @@ public class ContactsStepDefs {
 
     }
 
-
+    ContactsPage contactsPage = new ContactsPage();
     @And("the user updates one contact data details")
     public void theUserUpdatesOneContactDataDetails() {
+       contactsPage.waitUntilLoaderScreenDisappear();
+       contactsPage.changeView("100");
+        BrowserUtils.waitFor(2);
+        contactsPage.getMeOneContact();
+       contactsPage.waitUntilLoaderScreenDisappear();
+
 
 
     }
