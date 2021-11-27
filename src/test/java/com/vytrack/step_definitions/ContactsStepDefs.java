@@ -8,6 +8,7 @@ import com.vytrack.utilities.BrowserUtils;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.DBUtils;
 import com.vytrack.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -165,4 +166,15 @@ public class ContactsStepDefs {
     }
 
 
+    @And("the user updates one contact data details")
+    public void theUserUpdatesOneContactDataDetails() {
+
+
+    }
+
+    @Then("the user verifies same data has been modified at the DB part")
+    public void theUserVerifiesSameDataHasBeenModifiedAtTheDBPart() {
+
+
+    }
 }
