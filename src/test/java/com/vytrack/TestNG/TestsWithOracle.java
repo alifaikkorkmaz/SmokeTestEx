@@ -22,12 +22,17 @@ public class TestsWithOracle {
         resultSet = statement.executeQuery(query);
 }
     @AfterMethod
-    public void tearDown(){
-
+    public void tearDown() throws SQLException {
+        resultSet.close();
+        statement.close();
+        connection.close();
 }
     @Test
-    public void connectionTest(){
+    public void connectionTest() throws SQLException {
 
+        while(resultSet.next()){
+            System.out.println(resultSet.getObject(1)+"|"+resultSet.getObject(2)+"|"+resultSet.getObject(3));
+        }
     }
 
 
