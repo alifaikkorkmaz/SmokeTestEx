@@ -43,7 +43,16 @@ public class TestsWithOracle {
     public void mapTest(){
         List<Map<String,String>> salaryList = new ArrayList<>();
         Map<String,String> map1 = new HashMap<>();
+        map1.put("first_name","Steven");
+        map1.put("last_name","King");
+        map1.put("salary","24000");
+        Map<String,String> map2 = new HashMap<>();
+        map2.put("first_name","Neena");
+        map2.put("last_name","Kochhar");
+        map2.put("salary","17000");
 
+        salaryList.add(map1);
+        salaryList.add(map2);
     }
 
 
