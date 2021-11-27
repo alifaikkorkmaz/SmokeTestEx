@@ -5,6 +5,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TestsWithOracle {
 
@@ -33,6 +37,13 @@ public class TestsWithOracle {
         while(resultSet.next()){
             System.out.println(resultSet.getObject(1)+"|"+resultSet.getObject(2)+"|"+resultSet.getObject(3));
         }
+    }
+
+    @Test
+    public void mapTest(){
+        List<Map<String,String>> salaryList = new ArrayList<>();
+        Map<String,String> map1 = new HashMap<>();
+
     }
 
 
