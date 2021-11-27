@@ -198,7 +198,21 @@ public class ContactsStepDefs {
 
     @Then("the user verifies same data has been modified at the DB part")
     public void theUserVerifiesSameDataHasBeenModifiedAtTheDBPart() {
+    String query = "select oc.first_name, oc.last_name, oe.email from\n" +
+            "orocrm_contact oc join orocrm_contact_email oe on\n" +
+            "oc.id = oe.owner_id where oe.email = '"+newEmail+"'";
 
+        Map<String, Object> contactData = DBUtils.getRowMap(query);
+
+        System.out.println("contactData = " + contactData);
+
+        String firstNameDB = (String) contactData.get("first_name");
+        String lastNameDB = (String) contactData.get("last_name");
+        String emailDB = (String) contactData.get("email");
+
+        Assert.assertEquals(firstName,firstNameDB);
+        Assert.assertEquals(lastName,lastNameDB);
+        Assert.assertEquals(newEmail,emailDB);
 
     }
 }

@@ -1,5 +1,6 @@
 Feature: Updating contact detail from UI and Verifying from DB
 
+  @db
   Scenario: Contacts test with email
     Given the user logged in as "sales manager"
     And the user navigates to "Customers" "Contacts"
