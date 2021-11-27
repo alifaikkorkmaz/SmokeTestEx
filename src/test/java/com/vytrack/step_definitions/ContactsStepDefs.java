@@ -1,5 +1,6 @@
 package com.vytrack.step_definitions;
 
+import com.github.javafaker.Faker;
 import com.vytrack.pages.ContactInfoPage;
 import com.vytrack.pages.ContactsPage;
 import com.vytrack.pages.DashboardPage;
@@ -166,6 +167,11 @@ public class ContactsStepDefs {
     }
 
     ContactsPage contactsPage = new ContactsPage();
+    ContactInfoPage infoPage = new ContactInfoPage();
+    String firstName;
+    String lastName;
+    String newEmail;
+    Faker faker = new Faker();
     @And("the user updates one contact data details")
     public void theUserUpdatesOneContactDataDetails() {
        contactsPage.waitUntilLoaderScreenDisappear();
@@ -173,10 +179,22 @@ public class ContactsStepDefs {
         BrowserUtils.waitFor(2);
         contactsPage.getMeOneContact();
        contactsPage.waitUntilLoaderScreenDisappear();
-
-
-
-    }
+        firstName = faker.name().firstName();
+        lastName = faker.name().lastName();
+        newEmail = faker.internet().emailAddress();
+        infoPage.firstName.clear();
+       infoPage.firstName.sendKeys(firstName);
+       infoPage.lastName.clear();
+       infoPage.lastName.sendKeys(lastName);
+       infoPage.newEmail.clear();
+       infoPage.newEmail.sendKeys(newEmail);
+        System.out.println("firstName = " + firstName);
+        System.out.println("lastName = " + lastName);
+        System.out.println("newEmail = " + newEmail);
+        BrowserUtils.waitFor(1);
+       infoPage.saveAndClose.click();
+       infoPage.waitUntilLoaderScreenDisappear();
+ }
 
     @Then("the user verifies same data has been modified at the DB part")
     public void theUserVerifiesSameDataHasBeenModifiedAtTheDBPart() {
