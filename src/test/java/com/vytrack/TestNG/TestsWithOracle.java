@@ -73,6 +73,26 @@ public class TestsWithOracle {
 
     }
 
+    @Test
+    public void dynamicListTest() throws SQLException {
+       ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+        List<Map<String,String>> queryList = new ArrayList<>();
+
+        while(resultSet.next()){
+            Map<String,String> map = new HashMap<>();
+            for (int i = 1; i <= columnCount; i++) {
+                 map.put(rsmd.getColumnName(i),resultSet.getString(i));
+            }
+            queryList.add(map);
+        }
+
+        for (Map<String, String> eachRow : queryList) {
+            System.out.println("eachRow = " + eachRow);
+        }
+        // From this point basically I can use JAVA collection methods to read and process my data
+    }
+
 
 
 }
