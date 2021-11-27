@@ -20,7 +20,7 @@ public class TestsWithOracle {
         String dbUrl = "jdbc:oracle:thin:@54.92.248.102:1521:xe";
         String dbUsername = "hr";
         String dbPassword = "hr";
-        String query = "select first_name,last_name, salary from employees";
+        String query = "select first_name,last_name, salary from employees"; // three columns, how about if I get more columns
         connection = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
         statement = connection.createStatement();
         resultSet = statement.executeQuery(query);
@@ -53,6 +53,24 @@ public class TestsWithOracle {
 
         salaryList.add(map1);
         salaryList.add(map2);
+        System.out.println(salaryList);
+    }
+
+    @Test
+    public void metaDataTest() throws SQLException {
+        DatabaseMetaData dbMetaData = connection.getMetaData();
+        System.out.println("dbMetaData.getDatabaseProductName() = " + dbMetaData.getDatabaseProductName());
+        System.out.println("dbMetaData.getDriverName() = " + dbMetaData.getDriverName());
+        System.out.println("dbMetaData.getDatabaseProductVersion() = " + dbMetaData.getDatabaseProductVersion());
+
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+
+        String columnName = rsmd.getColumnName(1);
+
+        System.out.println("columnName = " + columnName);
+        System.out.println("columnCount = " + columnCount);
+
     }
 
 
