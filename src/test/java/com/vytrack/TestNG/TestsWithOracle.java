@@ -20,7 +20,10 @@ public class TestsWithOracle {
         String dbUrl = "jdbc:oracle:thin:@3.239.148.14:1521:xe";
         String dbUsername = "hr";
         String dbPassword = "hr";
-        String query = "select first_name,last_name, salary from employees"; // three columns, how about if I get more columns
+        String query = "select e1.employee_id, e1.first_name,e1.last_name,e1.manager_id,e2.employee_id,e2.first_name,e2.last_name\n" +
+                "from employees e1 left join employees e2\n" +
+                "on e1.manager_id = e2.employee_id\n" +
+                "order by e1.employee_id"; // three columns, how about if I get more columns
         connection = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
         statement = connection.createStatement();
         resultSet = statement.executeQuery(query);
