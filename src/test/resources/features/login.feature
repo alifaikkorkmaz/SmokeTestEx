@@ -1,4 +1,4 @@
-@login @smoke
+@login @smoke @spc
 Feature: Users should be able to login
 
   Background:
