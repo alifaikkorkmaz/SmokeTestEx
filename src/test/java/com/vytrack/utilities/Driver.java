@@ -1,6 +1,5 @@
 package com.vytrack.utilities;
 
-import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -11,15 +10,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Driver {
     private Driver() {
@@ -74,46 +69,13 @@ public class Driver {
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setCapability("platform", Platform.ANY);
                     try {
-                        driverPool.set(new RemoteWebDriver(new URL("https://oauth-oscar-ced7a:b15c2e7a-0dfd-4efd-b0b6-a4e421b3a616@ondemand.eu-central-1.saucelabs.com:443/wd/hub"),chromeOptions));
+                        driverPool.set(new RemoteWebDriver(new URL("http://18.212.6.39:4444/wd/hub"),chromeOptions));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
-                    break;
-                case "mobile_chrome":
-                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-                    desiredCapabilities.setCapability(MobileCapabilityType.VERSION, "8.0");
-                    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
-                    desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME, BrowserType.CHROME);
-                    desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-                    try {
-                        driverPool.set(new RemoteWebDriver(new URL("http://localhost:4723/wd/hub"),desiredCapabilities));
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "remote_mobile_chrome":
-                    DesiredCapabilities desiredCapabilitiesR = new DesiredCapabilities();
-                    desiredCapabilitiesR.setCapability("appiumVersion", "1.20.2");
-                    desiredCapabilitiesR.setCapability("deviceName","Samsung Galaxy S8 FHD GoogleAPI Emulator");
-                    desiredCapabilitiesR.setCapability("deviceOrientation", "portrait");
-                    desiredCapabilitiesR.setCapability("browserName", "");
-                    desiredCapabilitiesR.setCapability("platformVersion","8.0");
-                    desiredCapabilitiesR.setCapability("platformName","Android");
-                    desiredCapabilitiesR.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
-                    try {
-                        driverPool.set(new RemoteWebDriver(new URL("https://oauth-oscar-ced7a:b15c2e7a-0dfd-4efd-b0b6-a4e421b3a616@ondemand.eu-central-1.saucelabs.com:443/wd/hub"),desiredCapabilitiesR));
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-
-
             }
         }
         return driverPool.get();
-
-
     }
     public static void closeDriver() {
         driverPool.get().quit();

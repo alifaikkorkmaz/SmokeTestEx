@@ -79,7 +79,7 @@
                 <configuration>
                     <parallel>methods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <runOrder>Alphabetical</runOrder>
                     <includes>
                         <include>**/*CukesRunner.java</include>
